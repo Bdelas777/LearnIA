@@ -2,6 +2,7 @@
 import { useState } from "react";
 import VarNumericas from './components/VarNumericas';
 import Variables from "./components/Variables";
+import Estructuras from "./components/Estructuras";
 
 const concepts = [
   {
@@ -15,23 +16,29 @@ const concepts = [
     pills: [
       { name: "Variables Numéricas", page: "var-numericas" }, // 👈 navega a la nueva página
       { name: "Variables",              page: 'var'},
-      { name: "Scikit-learn",        page: null },
-      { name: "Matplotlib",          page: null },
+      { name: "Estructuras",        page: 'estruc' },
+      { name: "If else",          page: null },
+      { name: "While",          page: null },
+      { name: "For",          page: null },
+      { name: "Funciones",          page: null },
+      { name: "POO",          page: null },
     ],
   },
   {
     id: "visual",
     tag: "02",
-    title: "Herramientas Visuales",
+    title: "Herramientas Visuales y procesamiento",
     subtitle: "IA sin código",
     icon: "🎨",
     accent: "#8b5cf6",
-    desc: "Plataformas de arrastrar y soltar para crear IA sin escribir código.",
+    desc: "Son las herramientas visuales y de procesamiento para escribir el codigo y visualizar las graficas.",
     pills: [
-      { name: "Teachable Machine", page: null },
-      { name: "KNIME",             page: null },
-      { name: "Weka",              page: null },
-      { name: "Orange",            page: null },
+      { name: "Numpy", page: null },
+      { name: "Pandas",             page: null },
+      { name: "Matplotlib",              page: null },
+      { name: "Scikit-learn",            page: null },
+      { name: "Keras",            page: null },
+      { name: "Matematicas y estadistica",            page: null },
     ],
   },
   {
@@ -43,10 +50,19 @@ const concepts = [
     accent: "#0ea5e9",
     desc: "Los sistemas aprenden a partir de datos sin ser programados explícitamente.",
     pills: [
-      { name: "Regresión",    page: null },
-      { name: "Clasificación",page: null },
-      { name: "Clustering",   page: null },
-      { name: "Random Forest",page: null },
+      { name: "Introduccion al ML",    page: null },
+      { name: "Evaluacion de modelos de Clasificacion",    page: null },
+      { name: "Evaluacion de modelos de Regresion",    page: null },
+      { name: "Regresión lineal",    page: null },
+      { name: "Regresión polinomial",    page: null },
+      { name: "Regresión logistica",    page: null },
+      { name: "Clasificador de Naives Bayes",page: null },
+      { name: "KNN",   page: null },
+      { name: "KMeans",   page: null },
+      { name: "Maquinas de Soporte Vectorial",page: null },
+      { name: "Analisis de Componentes Principales",page: null },
+      { name: "Regularizacion de Modelos Lineales",page: null },
+      { name: "Optimizacion de Hiperparametros",page: null },
     ],
   },
   {
@@ -58,10 +74,11 @@ const concepts = [
     accent: "#f43f5e",
     desc: "Redes neuronales con múltiples capas para aprender patrones complejos.",
     pills: [
-      { name: "TensorFlow",  page: null },
-      { name: "PyTorch",     page: null },
-      { name: "CNN",         page: null },
-      { name: "Transformers",page: null },
+      { name: "Introduccion a las redes neuronales/Percetron Sencillo",  page: null },
+      { name: "BackPropagation",     page: null },
+      { name: "Deep learning con Keras",         page: null },
+      { name: "Teoria de redes convuncionales",page: null },
+      { name: "Practica de redes convuncionales",page: null },
     ],
   },
 ];
@@ -73,8 +90,7 @@ const concepts = [
 function PageRouter({ page, onBack }) {
   if (page === "var-numericas") return <VarNumericas onBack={onBack} />;
   if (page === "var") return <Variables onBack={onBack} />;
-  // Agrega más páginas aquí:
-  // if (page === "pandas") return <Pandas onBack={onBack} />;
+  if (page === "estruc") return <Estructuras onBack={onBack} />;
   return null;
 }
 
@@ -216,8 +232,8 @@ export default function App() {
 
         {/* Footer */}
         <footer className="mt-20 pt-6 border-t border-white/10 text-xs text-white/30 flex justify-between">
-          <span>conceptos.ia © 2024</span>
-          <span>React + Tailwind</span>
+          <span>conceptos.ia © 2026 by Bernardo de la Sierra based on  Python: Machine Learning de Udemy</span>
+          <span>Created with React + Tailwind</span>
         </footer>
 
       </div>
