@@ -1,5 +1,14 @@
-import { useState } from "react";
+// App.jsx — IAConcepts · Página Principal + Navegación
+// Importa VarNumericas y maneja la navegación entre páginas sin React Router
 
+import { useState } from "react";
+import VarNumericas from './components/VarNumericas';
+
+// ─────────────────────────────────────────────────────────────────
+// Datos de los conceptos
+// Para agregar más páginas: añade { page: "MiComponente" } al concepto
+// y crea el componente correspondiente en /pages/
+// ─────────────────────────────────────────────────────────────────
 const concepts = [
   {
     id: "python",
@@ -10,10 +19,10 @@ const concepts = [
     accent: "#10b981",
     desc: "El lenguaje de programación más utilizado en inteligencia artificial.",
     pills: [
-      { name: "NumPy", url: "/numpy" },
-      { name: "Pandas", url: "/pandas" },
-      { name: "Scikit-learn", url: "/sklearn" },
-      { name: "Matplotlib", url: "/matplotlib" },
+      { name: "Variables Numéricas", page: "var-numericas" }, // 👈 navega a la nueva página
+      { name: "Pandas",              page: null },
+      { name: "Scikit-learn",        page: null },
+      { name: "Matplotlib",          page: null },
     ],
   },
   {
@@ -25,10 +34,10 @@ const concepts = [
     accent: "#8b5cf6",
     desc: "Plataformas de arrastrar y soltar para crear IA sin escribir código.",
     pills: [
-      { name: "Teachable Machine", url: "/teachable-machine" },
-      { name: "KNIME", url: "/knime" },
-      { name: "Weka", url: "/weka" },
-      { name: "Orange", url: "/orange" },
+      { name: "Teachable Machine", page: null },
+      { name: "KNIME",             page: null },
+      { name: "Weka",              page: null },
+      { name: "Orange",            page: null },
     ],
   },
   {
@@ -40,10 +49,10 @@ const concepts = [
     accent: "#0ea5e9",
     desc: "Los sistemas aprenden a partir de datos sin ser programados explícitamente.",
     pills: [
-      { name: "Regresión", url: "/regresion" },
-      { name: "Clasificación", url: "/clasificacion" },
-      { name: "Clustering", url: "/clustering" },
-      { name: "Random Forest", url: "/random-forest" },
+      { name: "Regresión",    page: null },
+      { name: "Clasificación",page: null },
+      { name: "Clustering",   page: null },
+      { name: "Random Forest",page: null },
     ],
   },
   {
@@ -55,20 +64,30 @@ const concepts = [
     accent: "#f43f5e",
     desc: "Redes neuronales con múltiples capas para aprender patrones complejos.",
     pills: [
-      { name: "TensorFlow", url: "/tensorflow" },
-      { name: "PyTorch", url: "/pytorch" },
-      { name: "CNN", url: "/cnn" },
-      { name: "Transformers", url: "/transformers" },
+      { name: "TensorFlow",  page: null },
+      { name: "PyTorch",     page: null },
+      { name: "CNN",         page: null },
+      { name: "Transformers",page: null },
     ],
   },
 ];
 
-function ConceptCard({ concept }) {
-  const [hovered, setHovered] = useState(false);
+// ─────────────────────────────────────────────────────────────────
+// Router simple: mapea el id de página → componente
+// Cuando agregues una nueva página, solo añádela aquí.
+// ─────────────────────────────────────────────────────────────────
+function PageRouter({ page, onBack }) {
+  if (page === "var-numericas") return <VarNumericas onBack={onBack} />;
+  // Agrega más páginas aquí:
+  // if (page === "pandas") return <Pandas onBack={onBack} />;
+  return null;
+}
 
-  const handleRedirect = (url) => {
-    window.location.href = url;
-  };
+// ─────────────────────────────────────────────────────────────────
+// ConceptCard
+// ─────────────────────────────────────────────────────────────────
+function ConceptCard({ concept, onNavigate }) {
+  const [hovered, setHovered] = useState(false);
 
   return (
     <div
@@ -85,28 +104,20 @@ function ConceptCard({ concept }) {
         }}
       >
         <div className="rounded-2xl bg-[#0b0b0b]/90 backdrop-blur-xl h-full p-6 border border-white/10">
-          
+
           {/* Glow */}
           <div
-            className={`absolute inset-0 rounded-2xl opacity-0 transition duration-700 ${
-              hovered ? "opacity-100" : ""
-            }`}
-            style={{
-              background: `radial-gradient(circle at top right, ${concept.accent}30, transparent 60%)`,
-            }}
+            className={`absolute inset-0 rounded-2xl transition duration-700 ${hovered ? "opacity-100" : "opacity-0"}`}
+            style={{ background: `radial-gradient(circle at top right, ${concept.accent}30, transparent 60%)` }}
           />
 
-          {/* Content */}
           <div className="relative z-10 flex flex-col h-full">
-            
+
             {/* Header */}
             <div className="flex justify-between mb-4">
               <span
                 className="text-xs px-2 py-1 rounded-full border font-mono"
-                style={{
-                  borderColor: concept.accent,
-                  color: concept.accent,
-                }}
+                style={{ borderColor: concept.accent, color: concept.accent }}
               >
                 {concept.tag}
               </span>
@@ -114,33 +125,26 @@ function ConceptCard({ concept }) {
             </div>
 
             {/* Title */}
-            <h2 className="text-xl font-bold mb-1 text-white">
-              {concept.title}
-            </h2>
-            <p className="text-sm mb-3" style={{ color: concept.accent }}>
-              {concept.subtitle}
-            </p>
+            <h2 className="text-xl font-bold mb-1 text-white">{concept.title}</h2>
+            <p className="text-sm mb-3" style={{ color: concept.accent }}>{concept.subtitle}</p>
 
             {/* Desc */}
-            <p className="text-sm text-gray-400 flex-1 mb-4">
-              {concept.desc}
-            </p>
+            <p className="text-sm text-gray-400 flex-1 mb-4">{concept.desc}</p>
 
             {/* Pills */}
             <div className="flex flex-wrap gap-2">
               {concept.pills.map((pill) => (
                 <button
                   key={pill.name}
-                  onClick={() => handleRedirect(pill.url)}
-                  className="text-xs px-3 py-1.5 rounded-md border border-white/10
-                  bg-white/5 hover:bg-white/10
-                  transition-all duration-300
-                  hover:scale-105 active:scale-95"
-                  style={{
-                    color: concept.accent,
-                  }}
+                  onClick={() => pill.page && onNavigate(pill.page)}
+                  className={`text-xs px-3 py-1.5 rounded-md border border-white/10 bg-white/5
+                    transition-all duration-300 hover:scale-105 active:scale-95
+                    ${pill.page ? "hover:bg-white/10 cursor-pointer" : "opacity-50 cursor-not-allowed"}`}
+                  style={{ color: concept.accent }}
+                  title={pill.page ? `Ir a ${pill.name}` : "Próximamente"}
                 >
                   {pill.name}
+                  {pill.page && <span className="ml-1 opacity-60">→</span>}
                 </button>
               ))}
             </div>
@@ -152,7 +156,19 @@ function ConceptCard({ concept }) {
   );
 }
 
+// ─────────────────────────────────────────────────────────────────
+// App principal
+// ─────────────────────────────────────────────────────────────────
 export default function App() {
+  // currentPage: null = página principal | "var-numericas" = sub-página
+  const [currentPage, setCurrentPage] = useState(null);
+
+  // Si hay una página activa, renderiza su componente
+  if (currentPage) {
+    return <PageRouter page={currentPage} onBack={() => setCurrentPage(null)} />;
+  }
+
+  // Página principal
   return (
     <div
       className="min-h-screen bg-gradient-to-b from-[#0a0a0a] to-[#050505] text-white"
@@ -160,15 +176,11 @@ export default function App() {
     >
       <style>{`
         @import url('https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=IBM+Plex+Mono:wght@400;500;700&display=swap');
-
         @keyframes fadeUp {
           from { opacity: 0; transform: translateY(20px); }
-          to { opacity: 1; transform: translateY(0); }
+          to   { opacity: 1; transform: translateY(0); }
         }
-
-        .fade-up {
-          animation: fadeUp 0.6s cubic-bezier(.16,1,.3,1) both;
-        }
+        .fade-up { animation: fadeUp 0.6s cubic-bezier(.16,1,.3,1) both; }
       `}</style>
 
       {/* Background glow */}
@@ -178,16 +190,14 @@ export default function App() {
       </div>
 
       <div className="relative z-10 max-w-5xl mx-auto px-6 py-20">
-        
+
         {/* Navbar */}
         <nav className="flex justify-between mb-16 fade-up">
           <div className="flex items-center gap-3">
             <div className="w-7 h-7 rounded bg-gradient-to-br from-indigo-500 to-violet-600 flex items-center justify-center text-xs font-bold">
               AI
             </div>
-            <span className="text-sm text-white/70 font-mono">
-              conceptos.ia
-            </span>
+            <span className="text-sm text-white/70 font-mono">conceptos.ia</span>
           </div>
         </nav>
 
@@ -199,17 +209,16 @@ export default function App() {
               Inteligencia Artificial
             </span>
           </h1>
-
           <p className="text-gray-400 max-w-xl">
             Explora los pilares fundamentales de la IA moderna de forma clara e interactiva.
           </p>
         </header>
 
-        {/* Grid */}
+        {/* Grid de conceptos */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           {concepts.map((concept, i) => (
             <div key={concept.id} className="fade-up" style={{ animationDelay: `${i * 100}ms` }}>
-              <ConceptCard concept={concept} />
+              <ConceptCard concept={concept} onNavigate={setCurrentPage} />
             </div>
           ))}
         </div>
@@ -219,6 +228,7 @@ export default function App() {
           <span>conceptos.ia © 2024</span>
           <span>React + Tailwind</span>
         </footer>
+
       </div>
     </div>
   );
