@@ -1,14 +1,8 @@
-// App.jsx — IAConcepts · Página Principal + Navegación
-// Importa VarNumericas y maneja la navegación entre páginas sin React Router
 
 import { useState } from "react";
 import VarNumericas from './components/VarNumericas';
+import Variables from "./components/Variables";
 
-// ─────────────────────────────────────────────────────────────────
-// Datos de los conceptos
-// Para agregar más páginas: añade { page: "MiComponente" } al concepto
-// y crea el componente correspondiente en /pages/
-// ─────────────────────────────────────────────────────────────────
 const concepts = [
   {
     id: "python",
@@ -20,7 +14,7 @@ const concepts = [
     desc: "El lenguaje de programación más utilizado en inteligencia artificial.",
     pills: [
       { name: "Variables Numéricas", page: "var-numericas" }, // 👈 navega a la nueva página
-      { name: "Pandas",              page: null },
+      { name: "Variables",              page: 'var'},
       { name: "Scikit-learn",        page: null },
       { name: "Matplotlib",          page: null },
     ],
@@ -72,20 +66,19 @@ const concepts = [
   },
 ];
 
-// ─────────────────────────────────────────────────────────────────
+
 // Router simple: mapea el id de página → componente
 // Cuando agregues una nueva página, solo añádela aquí.
-// ─────────────────────────────────────────────────────────────────
+
 function PageRouter({ page, onBack }) {
   if (page === "var-numericas") return <VarNumericas onBack={onBack} />;
+  if (page === "var") return <Variables onBack={onBack} />;
   // Agrega más páginas aquí:
   // if (page === "pandas") return <Pandas onBack={onBack} />;
   return null;
 }
 
-// ─────────────────────────────────────────────────────────────────
 // ConceptCard
-// ─────────────────────────────────────────────────────────────────
 function ConceptCard({ concept, onNavigate }) {
   const [hovered, setHovered] = useState(false);
 
@@ -156,9 +149,7 @@ function ConceptCard({ concept, onNavigate }) {
   );
 }
 
-// ─────────────────────────────────────────────────────────────────
 // App principal
-// ─────────────────────────────────────────────────────────────────
 export default function App() {
   // currentPage: null = página principal | "var-numericas" = sub-página
   const [currentPage, setCurrentPage] = useState(null);
