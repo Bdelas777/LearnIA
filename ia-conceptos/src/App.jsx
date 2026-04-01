@@ -3,7 +3,8 @@ import { useState } from "react";
 import VarNumericas from './components/VarNumericas';
 import Variables from "./components/Variables";
 import Estructuras from "./components/Estructuras";
-
+import If from "./components/If";
+import For from "./components/For";
 const concepts = [
   {
     id: "python",
@@ -17,9 +18,9 @@ const concepts = [
       { name: "Variables Numéricas", page: "var-numericas" }, // 👈 navega a la nueva página
       { name: "Variables",              page: 'var'},
       { name: "Estructuras",        page: 'estruc' },
-      { name: "If else",          page: null },
-      { name: "While",          page: null },
-      { name: "For",          page: null },
+      { name: "If else",          page: 'if' },
+      { name: "While",          page:  null  },
+      { name: "For",          page: 'for' },
       { name: "Funciones",          page: null },
       { name: "POO",          page: null },
     ],
@@ -83,7 +84,6 @@ const concepts = [
   },
 ];
 
-
 // Router simple: mapea el id de página → componente
 // Cuando agregues una nueva página, solo añádela aquí.
 
@@ -91,6 +91,8 @@ function PageRouter({ page, onBack }) {
   if (page === "var-numericas") return <VarNumericas onBack={onBack} />;
   if (page === "var") return <Variables onBack={onBack} />;
   if (page === "estruc") return <Estructuras onBack={onBack} />;
+  if (page === "if") return <If onBack={onBack} />;
+  if (page === "for") return <For onBack={onBack} />;
   return null;
 }
 
