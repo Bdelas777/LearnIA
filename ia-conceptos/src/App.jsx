@@ -5,6 +5,9 @@ import Variables from "./components/Variables";
 import Estructuras from "./components/Estructuras";
 import If from "./components/If";
 import For from "./components/For";
+import While from './components/While'
+import Funciones from "./components/Funciones";
+import POO from "./components/POO";
 const concepts = [
   {
     id: "python",
@@ -19,10 +22,10 @@ const concepts = [
       { name: "Variables",              page: 'var'},
       { name: "Estructuras",        page: 'estruc' },
       { name: "If else",          page: 'if' },
-      { name: "While",          page:  null  },
+      { name: "While",          page:  'while'  },
       { name: "For",          page: 'for' },
-      { name: "Funciones",          page: null },
-      { name: "POO",          page: null },
+      { name: "Funciones",          page: "funciones" },
+      { name: "POO",          page: "poo" },
     ],
   },
   {
@@ -93,6 +96,9 @@ function PageRouter({ page, onBack }) {
   if (page === "estruc") return <Estructuras onBack={onBack} />;
   if (page === "if") return <If onBack={onBack} />;
   if (page === "for") return <For onBack={onBack} />;
+  if (page === "while") return <While onBack={onBack} />;
+  if (page === "funciones") return <Funciones onBack={onBack} />;
+  if (page === "poo") return <POO onBack={onBack} />;
   return null;
 }
 
