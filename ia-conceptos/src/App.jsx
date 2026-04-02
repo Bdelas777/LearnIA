@@ -8,6 +8,8 @@ import For from "./components/For";
 import While from './components/While'
 import Funciones from "./components/Funciones";
 import POO from "./components/POO";
+import NumPy from "./components/Numpy";
+
 const concepts = [
   {
     id: "python",
@@ -37,7 +39,7 @@ const concepts = [
     accent: "#8b5cf6",
     desc: "Son las herramientas visuales y de procesamiento para escribir el codigo y visualizar las graficas.",
     pills: [
-      { name: "Numpy", page: null },
+      { name: "Numpy", page: "numpy" },
       { name: "Pandas",             page: null },
       { name: "Matplotlib",              page: null },
       { name: "Scikit-learn",            page: null },
@@ -99,6 +101,7 @@ function PageRouter({ page, onBack }) {
   if (page === "while") return <While onBack={onBack} />;
   if (page === "funciones") return <Funciones onBack={onBack} />;
   if (page === "poo") return <POO onBack={onBack} />;
+  if (page === "numpy") return <NumPy onBack={onBack} />;
   return null;
 }
 
