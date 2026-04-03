@@ -9,7 +9,9 @@ import While from './components/While'
 import Funciones from "./components/Funciones";
 import POO from "./components/POO";
 import NumPy from "./components/Numpy";
-
+import Pandas from "./components/Pandas";
+import Matplotlib from "./components/Matplotlib";
+import ScikitLearn from "./components/ScikitLearn";
 const concepts = [
   {
     id: "python",
@@ -20,7 +22,7 @@ const concepts = [
     accent: "#10b981",
     desc: "El lenguaje de programación más utilizado en inteligencia artificial.",
     pills: [
-      { name: "Variables Numéricas", page: "var-numericas" }, // 👈 navega a la nueva página
+      { name: "Variables Numéricas", page: "var-numericas" }, 
       { name: "Variables",              page: 'var'},
       { name: "Estructuras",        page: 'estruc' },
       { name: "If else",          page: 'if' },
@@ -34,16 +36,15 @@ const concepts = [
     id: "visual",
     tag: "02",
     title: "Herramientas Visuales y procesamiento",
-    subtitle: "IA sin código",
+    subtitle: "Como visualizar y procesar datos",
     icon: "🎨",
     accent: "#8b5cf6",
     desc: "Son las herramientas visuales y de procesamiento para escribir el codigo y visualizar las graficas.",
     pills: [
       { name: "Numpy", page: "numpy" },
-      { name: "Pandas",             page: null },
-      { name: "Matplotlib",              page: null },
-      { name: "Scikit-learn",            page: null },
-      { name: "Keras",            page: null },
+      { name: "Pandas",             page: "pandas" },
+      { name: "Matplotlib",              page: "matplotlib" },
+      { name: "Scikit-learn",            page: "scikit-learn" },
       { name: "Matematicas y estadistica",            page: null },
     ],
   },
@@ -102,6 +103,10 @@ function PageRouter({ page, onBack }) {
   if (page === "funciones") return <Funciones onBack={onBack} />;
   if (page === "poo") return <POO onBack={onBack} />;
   if (page === "numpy") return <NumPy onBack={onBack} />;
+  if (page === "pandas") return <Pandas onBack={onBack} />;
+  if (page === "matplotlib") return <Matplotlib onBack={onBack} />;
+  if (page === "scikit-learn") return <ScikitLearn onBack={onBack} />;
+
   return null;
 }
 
