@@ -12,6 +12,7 @@ import NumPy from "./components/Numpy";
 import Pandas from "./components/Pandas";
 import Matplotlib from "./components/Matplotlib";
 import ScikitLearn from "./components/ScikitLearn";
+import MatematicasEstadistica from "./components/Estadistica";
 const concepts = [
   {
     id: "python",
@@ -45,7 +46,7 @@ const concepts = [
       { name: "Pandas",             page: "pandas" },
       { name: "Matplotlib",              page: "matplotlib" },
       { name: "Scikit-learn",            page: "scikit-learn" },
-      { name: "Matematicas y estadistica",            page: null },
+      { name: "Matematicas y estadistica",            page: "matematicas-estadistica" },
     ],
   },
   {
@@ -106,6 +107,7 @@ function PageRouter({ page, onBack }) {
   if (page === "pandas") return <Pandas onBack={onBack} />;
   if (page === "matplotlib") return <Matplotlib onBack={onBack} />;
   if (page === "scikit-learn") return <ScikitLearn onBack={onBack} />;
+  if (page === "matematicas-estadistica") return <MatematicasEstadistica onBack={onBack} />;
 
   return null;
 }
