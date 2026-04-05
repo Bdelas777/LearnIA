@@ -16,6 +16,8 @@ import MatematicasEstadistica from "./components/Estadistica";
 import ML from "./components/ML";
 import Clasificacion from "./components/Clasificacion";
 import Regresion from "./components/Regresion";
+import Lineal from "./components/Lineal";
+import Polinomial from "./components/Polinomial";
 const concepts = [
   {
     id: "python",
@@ -64,8 +66,8 @@ const concepts = [
       { name: "Introduccion al ML",    page: 'ml' },
       { name: "Evaluacion de modelos de Clasificacion",    page: "clasificacion" },
       { name: "Evaluacion de modelos de Regresion",    page: "regresion" },
-      { name: "Regresión lineal",    page: null },
-      { name: "Regresión polinomial",    page: null },
+      { name: "Regresión lineal",    page: "lineal" },
+      { name: "Regresión polinomial",    page: "polinomial" },
       { name: "Regresión logistica",    page: null },
       { name: "Clasificador de Naives Bayes",page: null },
       { name: "KNN",   page: null },
@@ -114,7 +116,9 @@ function PageRouter({ page, onBack }) {
   if (page === "ml") return <ML onBack={onBack} />;
   if (page === "clasificacion") return <Clasificacion onBack={onBack} />;
   if (page === "regresion") return <Regresion onBack={onBack} />;
-  
+  if (page === "polinomial") return <Polinomial onBack={onBack} />;
+  if (page === "lineal") return <Lineal onBack={onBack} />;
+
   return null;
 }
 
