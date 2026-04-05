@@ -15,6 +15,7 @@ import ScikitLearn from "./components/ScikitLearn";
 import MatematicasEstadistica from "./components/Estadistica";
 import ML from "./components/ML";
 import Clasificacion from "./components/Clasificacion";
+import Regresion from "./components/Regresion";
 const concepts = [
   {
     id: "python",
@@ -62,7 +63,7 @@ const concepts = [
     pills: [
       { name: "Introduccion al ML",    page: 'ml' },
       { name: "Evaluacion de modelos de Clasificacion",    page: "clasificacion" },
-      { name: "Evaluacion de modelos de Regresion",    page: null },
+      { name: "Evaluacion de modelos de Regresion",    page: "regresion" },
       { name: "Regresión lineal",    page: null },
       { name: "Regresión polinomial",    page: null },
       { name: "Regresión logistica",    page: null },
@@ -112,7 +113,8 @@ function PageRouter({ page, onBack }) {
   if (page === "matematicas-estadistica") return <MatematicasEstadistica onBack={onBack} />;
   if (page === "ml") return <ML onBack={onBack} />;
   if (page === "clasificacion") return <Clasificacion onBack={onBack} />;
-
+  if (page === "regresion") return <Regresion onBack={onBack} />;
+  
   return null;
 }
 
