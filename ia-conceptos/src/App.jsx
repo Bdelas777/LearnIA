@@ -13,6 +13,8 @@ import Pandas from "./components/Pandas";
 import Matplotlib from "./components/Matplotlib";
 import ScikitLearn from "./components/ScikitLearn";
 import MatematicasEstadistica from "./components/Estadistica";
+import ML from "./components/ML";
+import Clasificacion from "./components/Clasificacion";
 const concepts = [
   {
     id: "python",
@@ -58,8 +60,8 @@ const concepts = [
     accent: "#0ea5e9",
     desc: "Los sistemas aprenden a partir de datos sin ser programados explícitamente.",
     pills: [
-      { name: "Introduccion al ML",    page: null },
-      { name: "Evaluacion de modelos de Clasificacion",    page: null },
+      { name: "Introduccion al ML",    page: 'ml' },
+      { name: "Evaluacion de modelos de Clasificacion",    page: "clasificacion" },
       { name: "Evaluacion de modelos de Regresion",    page: null },
       { name: "Regresión lineal",    page: null },
       { name: "Regresión polinomial",    page: null },
@@ -108,6 +110,8 @@ function PageRouter({ page, onBack }) {
   if (page === "matplotlib") return <Matplotlib onBack={onBack} />;
   if (page === "scikit-learn") return <ScikitLearn onBack={onBack} />;
   if (page === "matematicas-estadistica") return <MatematicasEstadistica onBack={onBack} />;
+  if (page === "ml") return <ML onBack={onBack} />;
+  if (page === "clasificacion") return <Clasificacion onBack={onBack} />;
 
   return null;
 }
