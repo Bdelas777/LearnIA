@@ -18,6 +18,7 @@ import Clasificacion from "./components/Clasificacion";
 import Regresion from "./components/Regresion";
 import Lineal from "./components/Lineal";
 import Polinomial from "./components/Polinomial";
+import Logistica from "./components/Logistica";
 const concepts = [
   {
     id: "python",
@@ -68,7 +69,7 @@ const concepts = [
       { name: "Evaluacion de modelos de Regresion",    page: "regresion" },
       { name: "Regresión lineal",    page: "lineal" },
       { name: "Regresión polinomial",    page: "polinomial" },
-      { name: "Regresión logistica",    page: null },
+      { name: "Regresión logistica",    page: "logistica" },
       { name: "Clasificador de Naives Bayes",page: null },
       { name: "KNN",   page: null },
       { name: "KMeans",   page: null },
@@ -118,6 +119,7 @@ function PageRouter({ page, onBack }) {
   if (page === "regresion") return <Regresion onBack={onBack} />;
   if (page === "polinomial") return <Polinomial onBack={onBack} />;
   if (page === "lineal") return <Lineal onBack={onBack} />;
+  if (page === "logistica") return <Logistica onBack={onBack} />;
 
   return null;
 }
