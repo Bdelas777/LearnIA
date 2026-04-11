@@ -23,6 +23,7 @@ import Bayes from "./components/Bayes";
 import KNN from "./components/KNN";
 import KMeans from "./components/KMeans";
 import Maquina from "./components/Maquina";
+import Analisis from "./components/Analisis";
 const concepts = [
   {
     id: "python",
@@ -78,7 +79,7 @@ const concepts = [
       { name: "KNN",   page: "knn" },
       { name: "KMeans",   page: "kmeans" },
       { name: "Maquinas de Soporte Vectorial",page: "maquina" },
-      { name: "Analisis de Componentes Principales",page: null },
+      { name: "Analisis de Componentes Principales",page: "analisis" },
       { name: "Regularizacion de Modelos Lineales",page: null },
       { name: "Optimizacion de Hiperparametros",page: null },
     ],
@@ -128,6 +129,7 @@ function PageRouter({ page, onBack }) {
   if (page === "knn") return <KNN onBack={onBack} />;
   if (page === "kmeans") return <KMeans onBack={onBack} />;
   if (page === "maquina") return <Maquina onBack={onBack} />;
+  if (page === "analisis") return <Analisis onBack={onBack} />;
   return null;
 }
 
