@@ -24,6 +24,8 @@ import KNN from "./components/KNN";
 import KMeans from "./components/KMeans";
 import Maquina from "./components/Maquina";
 import Analisis from "./components/Analisis";
+import Lineales from "./components/Lineales";
+import Hiperparametros from "./components/Hiperparametros";
 const concepts = [
   {
     id: "python",
@@ -80,8 +82,9 @@ const concepts = [
       { name: "KMeans",   page: "kmeans" },
       { name: "Maquinas de Soporte Vectorial",page: "maquina" },
       { name: "Analisis de Componentes Principales",page: "analisis" },
-      { name: "Regularizacion de Modelos Lineales",page: null },
-      { name: "Optimizacion de Hiperparametros",page: null },
+      { name: "Regularizacion de Modelos Lineales",page: "lineales" },
+      { name: "Optimizacion de Hiperparametros",page: "hiperparametros" },
+      { name: "Arboles de decision ",page: null },
     ],
   },
   {
@@ -130,6 +133,7 @@ function PageRouter({ page, onBack }) {
   if (page === "kmeans") return <KMeans onBack={onBack} />;
   if (page === "maquina") return <Maquina onBack={onBack} />;
   if (page === "analisis") return <Analisis onBack={onBack} />;
+  if (page === "lineales") return <Lineales onBack={onBack} />; 
   return null;
 }
 
